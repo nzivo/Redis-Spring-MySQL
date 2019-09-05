@@ -3,3 +3,5 @@ Welcome to the Redis-Spring-MySQL wiki!
 ***
 # REDIS MYSQL CACHE REST API
 
+***
+Copyright &copy; 2019
