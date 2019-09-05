@@ -1,4 +1,4 @@
-<img src="https://github.com/nzivo/Redis-Spring-MySQL/blob/master/New%20Project.jpg">
+<img src="https://github.com/nzivo/Redis-Spring-MySQL/blob/master/bannerBg.jpg">
 
 # REDIS MYSQL CACHE REST API
 
