@@ -1,6 +1,6 @@
-package com.example.redis.Service;
+package com.example.redis.Services.ClientService;
 
-import com.example.redis.Model.Client;
+import com.example.redis.Models.ClientModel.Client;
 
 import java.util.List;
 

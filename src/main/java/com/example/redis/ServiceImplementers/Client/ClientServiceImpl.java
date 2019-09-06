@@ -1,8 +1,8 @@
-package com.example.redis.Service.ServiceImpl;
+package com.example.redis.ServiceImplementers.Client;
 
-import com.example.redis.Model.Client;
-import com.example.redis.Repository.ClientRepository;
-import com.example.redis.Service.ClientService;
+import com.example.redis.Models.ClientModel.Client;
+import com.example.redis.Repositories.ClientRepository.ClientRepository;
+import com.example.redis.Services.ClientService.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("ClientService")
 @CacheConfig(cacheNames = "allClientsCache")
 public class ClientServiceImpl implements ClientService {
 

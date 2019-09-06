@@ -1,9 +1,9 @@
-package com.example.redis.Model;
+package com.example.redis.Models.ClientModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@Entity(name = "Client")
 @Table(name = "client")
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
