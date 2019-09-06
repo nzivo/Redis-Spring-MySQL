@@ -1,9 +1,12 @@
 package com.example.redis.Models.ClientModel;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "Client")
+@Data
 @Table(name = "client")
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;

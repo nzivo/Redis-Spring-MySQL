@@ -1,11 +1,15 @@
 package com.example.redis.Models.CountryModel;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "Country")
+@Data
 @Table(name = "country")
 public class Country implements Serializable {
+    private static final long serialVersionUID = -6791377053404789458L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
