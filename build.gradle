@@ -45,6 +45,7 @@ dependencies {
 
     compile('org.springframework.boot:spring-boot-starter-cache')
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.9'
+    implementation 'com.google.code.gson:gson:2.8.5'
 
 
 }
