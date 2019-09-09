@@ -7,11 +7,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
 @EnableCaching
@@ -26,19 +29,26 @@ public class RedisConfig extends CachingConfigurerSupport {
         return new LettuceConnectionFactory(redisConf);
    }
 
-   @Bean
-   public RedisCacheManager cacheManager() {
-	    RedisCacheManager rcm = RedisCacheManager.create(redisConnectionFactory());
-	    rcm.setTransactionAware(true);
-   	    return rcm;
-   }
+    @Bean
+    public StringRedisSerializer stringRedisSerializer() {
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        return stringRedisSerializer;
+    }
 
     @Bean
-    public RedisTemplate<?, ?> redisTemplate() {
-        final RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
+    public GenericJackson2JsonRedisSerializer genericJackson2JsonRedisJsonSerializer() {
+        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisJsonSerializer =
+                new GenericJackson2JsonRedisSerializer();
+        return genericJackson2JsonRedisJsonSerializer;
+    }
+
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        final RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(new GenericJackson2JsonRedisSerializer());
         redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
         return redisTemplate;
     }
