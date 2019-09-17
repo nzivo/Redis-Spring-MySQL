@@ -38,13 +38,6 @@ public class Country implements Serializable {
         this.prefix = prefix;
     }
 
-    public Country(String country, int country_code, String abbreviation, String prefix) {
-        this.country = country;
-        this.country_code = country_code;
-        this.abbreviation = abbreviation;
-        this.prefix = prefix;
-    }
-
     public long getCountryId() {
         return countryId;
     }

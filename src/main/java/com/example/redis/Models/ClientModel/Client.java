@@ -1,9 +1,13 @@
 package com.example.redis.Models.ClientModel;
 
+import com.example.redis.Models.CountryModel.Country;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity(name = "Client")
 @Data
@@ -42,10 +46,15 @@ public class Client implements Serializable {
     @Column(name="active")
     private int active;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
+    private Country country;
+
     public Client() {
     }
 
-    public Client(int country_id, int client_code, String client_name, String description, String email, int phone, long msisdn, String address, int active) {
+    public Client(int country_id, int client_code, String client_name, String description, String email, int phone, long msisdn, String address, int active, Country country) {
         this.country_id = country_id;
         this.client_code = client_code;
         this.client_name = client_name;
@@ -55,6 +64,7 @@ public class Client implements Serializable {
         this.msisdn = msisdn;
         this.address = address;
         this.active = active;
+        this.country = country;
     }
 
     public long getClientId() {
@@ -135,6 +145,14 @@ public class Client implements Serializable {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     @Override
