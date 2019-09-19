@@ -1,12 +1,18 @@
 package com.example.redis.Models.ServiceModel;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.redis.Models.ClientModel.Client;
+import com.example.redis.Models.CountryModel.Country;
+import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
-public class ClientService implements Serializable {
+@Entity
+@Data
+@Table(name = "client_service")
+public class ClientServiceModel implements Serializable {
 
     private static final long serialVersionUID = -1L;
     @Id
@@ -23,10 +29,16 @@ public class ClientService implements Serializable {
     @Column(name = "active")
     private String active;
 
-    public ClientService() {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
+    private Client client;
+
+
+    public ClientServiceModel() {
     }
 
-    public ClientService(long clientServiceId, long clientId, long serviceId, String active) {
+    public ClientServiceModel(long clientServiceId, long clientId, long serviceId, String active) {
         this.clientServiceId = clientServiceId;
         this.clientId = clientId;
         this.serviceId = serviceId;
@@ -63,5 +75,13 @@ public class ClientService implements Serializable {
 
     public void setActive(String active) {
         this.active = active;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

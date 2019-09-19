@@ -1,13 +1,14 @@
 package com.example.redis.Models.ClientModel;
 
 import com.example.redis.Models.CountryModel.Country;
+import com.example.redis.Models.ServiceModel.ClientServiceModel;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity(name = "Client")
 @Data
@@ -50,6 +51,9 @@ public class Client implements Serializable {
     @JoinColumn(name = "country_id", insertable = false, updatable = false)
     @Fetch(FetchMode.JOIN)
     private Country country;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    private List<ClientServiceModel> clientServices;
 
     public Client() {
     }
@@ -153,6 +157,14 @@ public class Client implements Serializable {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public List<ClientServiceModel> getClientServices() {
+        return clientServices;
+    }
+
+    public void setClientServices(List<ClientServiceModel> clientServices) {
+        this.clientServices = clientServices;
     }
 
     @Override

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("ClientService")
+@Service("ClientServiceModel")
 @CacheConfig(cacheNames = "allClientsCache")
 public class ClientServiceImpl implements ClientService {
 
