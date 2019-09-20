@@ -2,6 +2,7 @@ package com.example.redis.Models.ClientModel;
 
 import com.example.redis.Models.CountryModel.Country;
 import com.example.redis.Models.ServiceModel.ClientServiceModel;
+import com.example.redis.Models.ServiceModel.Service;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -52,8 +53,11 @@ public class Client implements Serializable {
     @Fetch(FetchMode.JOIN)
     private Country country;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    @Embedded
     private List<ClientServiceModel> clientServices;
+
+    @Embedded
+    private List<String> services;
 
     public Client() {
     }
@@ -159,14 +163,6 @@ public class Client implements Serializable {
         this.country = country;
     }
 
-    public List<ClientServiceModel> getClientServices() {
-        return clientServices;
-    }
-
-    public void setClientServices(List<ClientServiceModel> clientServices) {
-        this.clientServices = clientServices;
-    }
-
     @Override
     public String toString(){
         return "User{" +
@@ -174,5 +170,13 @@ public class Client implements Serializable {
                 ",username = '" + client_name + '\'' +
                 ",address = '" + address + '\'' +
                 '}';
+    }
+
+    public List<String> getServices() {
+        return services;
+    }
+
+    public void setServices(List<String> services) {
+        this.services = services;
     }
 }

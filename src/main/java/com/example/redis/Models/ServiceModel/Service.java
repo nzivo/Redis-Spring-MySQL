@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Entity(name = "Service")
 @Data
 @Table(name = "service")
+@NamedQueries(@NamedQuery(name="Service.findByServiceId",query = "SELECT s FROM Service s WHERE s.serviceId=:serviceId"))
 public class Service implements Serializable {
     private static final long serialVersionUID = -1L;
     @Id

@@ -1,6 +1,11 @@
 package com.example.redis.Controllers.ClientController;
 
 import com.example.redis.Models.ClientModel.Client;
+import com.example.redis.Models.ServiceModel.ClientServiceModel;
+import com.example.redis.Models.ServiceModel.Service;
+import com.example.redis.Repositories.ServiceRepository.ClientServiceRepository;
+import com.example.redis.Repositories.ServiceRepository.ServiceRepository;
+import com.example.redis.ServiceImplementers.Client.ClientServiceImpl;
 import com.example.redis.Services.ClientService.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("api")
 @RestController("ClientController")
@@ -17,10 +24,23 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private ClientServiceRepository clientServiceRepository;
+
+    @Autowired
+    private ServiceRepository serviceRepository;
+
     @GetMapping("/client/{clientId}")
     @ResponseBody
     public ResponseEntity<Client> getClientById (@PathVariable Long clientId){
         Client client = clientService.getClientById(clientId);
+        List<ClientServiceModel> list = clientServiceRepository.findByClientId(client.getClientId());
+        List<String> services = new ArrayList<>();
+        for(ClientServiceModel model : list){
+           Service service = serviceRepository.findByServiceId(model.getServiceId());
+            services.add(service.getServiceName());
+        }
+        client.setServices(services);
         return new ResponseEntity<>(client, HttpStatus.OK);
     }
 

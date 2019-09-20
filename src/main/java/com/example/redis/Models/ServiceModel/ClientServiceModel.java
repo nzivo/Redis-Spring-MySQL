@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "client_service")
+@NamedQueries(@NamedQuery(name = "ClientServiceModel.findByClientId", query = "SELECT s FROM ClientServiceModel s WHERE s.clientId=:clientId ORDER BY s.id"))
 public class ClientServiceModel implements Serializable {
 
     private static final long serialVersionUID = -1L;
@@ -28,12 +29,6 @@ public class ClientServiceModel implements Serializable {
 
     @Column(name = "active")
     private String active;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id", insertable = false, updatable = false)
-    @Fetch(FetchMode.JOIN)
-    private Client client;
-
 
     public ClientServiceModel() {
     }
@@ -75,13 +70,5 @@ public class ClientServiceModel implements Serializable {
 
     public void setActive(String active) {
         this.active = active;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 }
