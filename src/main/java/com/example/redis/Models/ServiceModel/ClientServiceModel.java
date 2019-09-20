@@ -1,10 +1,6 @@
 package com.example.redis.Models.ServiceModel;
 
-import com.example.redis.Models.ClientModel.Client;
-import com.example.redis.Models.CountryModel.Country;
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;

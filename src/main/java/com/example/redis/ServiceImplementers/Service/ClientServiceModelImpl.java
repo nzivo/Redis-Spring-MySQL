@@ -1,10 +1,7 @@
 package com.example.redis.ServiceImplementers.Service;
 
-import com.example.redis.Models.ClientModel.Client;
 import com.example.redis.Models.ServiceModel.ClientServiceModel;
-import com.example.redis.Repositories.ClientRepository.ClientRepository;
 import com.example.redis.Repositories.ServiceRepository.ClientServiceRepository;
-import com.example.redis.Services.ClientService.ClientService;
 import com.example.redis.Services.ServicesService.ClientServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;

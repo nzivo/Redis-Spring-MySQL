@@ -2,7 +2,6 @@ package com.example.redis.Models.ClientModel;
 
 import com.example.redis.Models.CountryModel.Country;
 import com.example.redis.Models.ServiceModel.ClientServiceModel;
-import com.example.redis.Models.ServiceModel.Service;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;

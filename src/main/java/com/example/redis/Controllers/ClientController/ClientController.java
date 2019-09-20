@@ -5,7 +5,6 @@ import com.example.redis.Models.ServiceModel.ClientServiceModel;
 import com.example.redis.Models.ServiceModel.Service;
 import com.example.redis.Repositories.ServiceRepository.ClientServiceRepository;
 import com.example.redis.Repositories.ServiceRepository.ServiceRepository;
-import com.example.redis.ServiceImplementers.Client.ClientServiceImpl;
 import com.example.redis.Services.ClientService.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("api")
 @RestController("ClientController")
